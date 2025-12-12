@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add / Drop</h2>
+{% if allowed %}
+  <form id="adddrop-form" method="post" action="{% url 'school_features:submit_add_drop' %}">
+    {% csrf_token %}
+    <select name="course_id">
+      {% for c in courses %}
+        <option value="{{ c.id }}">{{ c.code }} - {{ c.name }}</option>
+      {% endfor %}
+    </select>
+    <button name="action" value="add">Add</button>
+    <button name="action" value="drop">Drop</button>
+  </form>
+{% else %}
+  <p>Add/Drop is currently closed. Check the school calendar for active periods.</p>
+{% endif %}
+{% endblock %}

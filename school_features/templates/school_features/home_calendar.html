@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>School Calendar & News</h2>
+<div id="calendar-list">
+  {% for c in calendars %}
+    <div class="cal-item">
+      <h3>{{ c.title }}</h3>
+      <p>{{ c.start_date }} — {{ c.end_date }}</p>
+      <p>{{ c.description|truncatechars:200 }}</p>
+    </div>
+  {% empty %}
+    <p>No calendar items.</p>
+  {% endfor %}
+</div>
+
+<h3>News & Events</h3>
+<ul>
+  {% for n in news %}
+    <li>{{ n.type }}: {{ n.title }} — {{ n.event_date }}</li>
+  {% empty %}
+    <li>No news.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
